@@ -16,6 +16,9 @@ async function buildAll() {
 
   await esbuild({
     entryPoints: [path.resolve(artifactDir, "src/index.js")],
+
+     tsconfig: path.resolve(artifactDir, "../tsconfig.json"),
+
     platform: "node",
     bundle: true,
     format: "esm",
@@ -119,8 +122,13 @@ globalThis.__dirname = __bannerPath.dirname(globalThis.__filename);
     },
   });
 }
-
 buildAll().catch((err) => {
+  console.error("========== ESBUILD ERROR ==========");
+
+  if (err.errors) {
+    console.error(err.errors);
+  }
+
   console.error(err);
   process.exit(1);
 });
