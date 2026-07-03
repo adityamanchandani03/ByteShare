@@ -290,23 +290,17 @@ router.post(
         classroomName: classroom.name,
       });
     }
-    // const downloadUrl = resource.fileUrl;
-    //   // const downloadUrl = resource.fileUrl.replace("/upload/", "/upload/fl_attachment/");
-    //   console.log("URL : ",downloadUrl);
-
-    //   res.json({ downloadUrl, tokensDeducted, newBalance });
-    // Paste this right before res.json(...) at the end of your download route:
 let downloadUrl = resource.fileUrl;
 
 if (downloadUrl.includes("/raw/upload/")) {
-  // Remove the trailing .pdf extension so Cloudinary finds the raw public_id
+  
   if (downloadUrl.endsWith(".pdf")) {
     downloadUrl = downloadUrl.slice(0, -4);
   }
-  // Inject the attachment parameter to force direct download
+ 
   downloadUrl = downloadUrl.replace("/upload/", "/upload/fl_attachment/");
 } else {
-  // If it's stored as an image, inject the attachment flag
+  
   downloadUrl = downloadUrl.replace("/upload/", "/upload/fl_attachment/");
 }
 

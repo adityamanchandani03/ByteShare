@@ -8,7 +8,6 @@ import app from "./app";
 import { logger } from "./lib/logger";
 import { connectMongoDB } from "./lib/mongodb";
 
-// Use PORT from environment if provided, otherwise default to 5000
 const port = Number(process.env.PORT) || 5000;
 
 connectMongoDB()
