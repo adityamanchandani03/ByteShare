@@ -23,7 +23,14 @@ app.use(
     }
   })
 );
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://byteshare.onrender.com" // replace with your actual frontend URL
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
@@ -31,3 +38,9 @@ var stdin_default = app;
 export {
   stdin_default as default
 };
+
+
+
+git add .           
+ git commit -m "app.js cors update for production"
+ git push origin main
